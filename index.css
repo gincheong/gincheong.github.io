@@ -1,0 +1,40 @@
+body {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+code {
+  border-radius: 12px;
+  padding: 0px 8px;
+  background-color: #f2f2f2;
+}
+
+.hidden {
+  content-visibility: hidden;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.profile > dt {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+  color: #567ace;
+}
+
+a:visited {
+  color: #567ace;
+}
+
+.experience-description {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
