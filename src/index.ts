@@ -1,12 +1,10 @@
 import fs from 'fs';
 import path from 'path';
-import ShowDown from 'showdown';
 import { DOMParser } from 'xmldom';
 import { filterFileWithExt, readDirectory } from './files';
+import { makeHtml } from './markdown';
 
 function mdToHtml() {
-  const converter = new ShowDown.Converter();
-
   const { files } = readDirectory('./articles');
   const markdownFiles = files.filter((file) => filterFileWithExt(file, '.md'));
 
@@ -14,7 +12,7 @@ function mdToHtml() {
     const file = fs.readFileSync(markdownFilePath);
     const texts = file.toString();
 
-    const html = converter.makeHtml(texts);
+    const html = makeHtml(path.parse(markdownFilePath).name, texts);
 
     const htmlFilePath = markdownFilePath.replace(/\.md$/, '.html');
 
