@@ -2,6 +2,9 @@ import Showdown from 'showdown';
 
 const converter = new Showdown.Converter();
 converter.setOption('noHeaderId', true);
+converter.setOption('simpleLineBreaks', true);
+converter.setOption('tables', true);
+converter.setOption('strikethrough', true);
 
 const routes = ['articles', 'about'];
 
