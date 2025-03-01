@@ -10,10 +10,6 @@ code {
   background-color: #f2f2f2;
 }
 
-.hidden {
-  content-visibility: hidden;
-}
-
 .profile {
   display: flex;
   flex-direction: column;
