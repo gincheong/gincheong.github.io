@@ -1,0 +1,62 @@
+<title>2-19 / articles / 20250302</title>
+<header><nav>
+<a href="/">home</a>
+<a href="/articles">articles</a>
+<a href="/about">about</a>
+</nav></header>
+<h1>20250302 - 유용하게 쓰고 있는 맥 용 소프트웨어들</h1>
+<h2>Karabiner</h2>
+<p>맥용 키맵핑 툴로 많이 소문난 소프트웨어<br />
+Spotlight로 검색할 때 한/영 전환이 꼬여서 가끔 첫 글자는 한글, 나머지 글자는 영어로 입력되는 일이 있었는데 Complex Modifications에 다음의 스크립트를 넣어 해결했다.</p>
+<pre><code class="json language-json">{
+  "description": "leftCommnad + spacebar -&gt; set language en (pass through)",
+  "manipulators": [
+    {
+      "from": {
+        "key_code": "spacebar",
+        "modifiers": { "mandatory": ["left_command"] }
+      },
+      "to": [
+        {
+          "key_code": "spacebar",
+          "modifiers": ["left_command"]
+        },
+        {
+          "select_input_source": {
+            "input_source_id": "Gureum",
+            "language": "en"
+          }
+        }
+      ],
+      "type": "basic"
+    }
+  ]
+}
+</code></pre>
+<h2>Doll</h2>
+<p><a href="https://github.com/xiaogdgenuine/Doll">https://github.com/xiaogdgenuine/Doll</a></p>
+<p><img src="https://github.com/xiaogdgenuine/Doll/raw/main/Doll/Docs/Images/show-as-badge.png" alt="doll usage sample" /></p>
+<p>메뉴 바 아이콘을 지원하지 않는 앱을 메뉴 바에 표시할 수 있게 하는 앱<br />
+앱의 알림 뱃지를 함께 표시할 수 있어서 유용하다.<br />
+예시 이미지처럼 Slack을 등록하여 사용하면 확인하지 않은 알림이 있다는 걸 Dock을 열어 확인하지 않아도 간편하게 확인이 가능하다.</p>
+<h2>Homerow</h2>
+<p><a href="https://www.homerow.app/">https://www.homerow.app/</a></p>
+<p><img src="20250302_1.png" alt="homerow example" /></p>
+<p>VIM 키맵핑에 영감을 받은 소프트웨어 중 하나.<br />
+화면 상의 클릭 가능한 요소들에 단축키를 할당하여 키보드만으로 클릭을 동작시킬 수 있다.</p>
+<p>MacOS에는 <code>Homerow</code>가 있고<br />
+웹 브라우저에는 <code>Vimium</code>이 있으며<br />
+Windows에도 동일한 컨셉의 기능이 있는 <code>Fluent Search</code>가 있지만 화면의 요소들을 제대로 찾질 못해서 사실상 원활하게 사용이 불가능했다.</p>
+<p>MacOS에는 <code>Shortcat</code>이라는 소프트웨어도 있지만, Homerow가 더 많은 설정이 가능했다.<br />
+그리고 Shortcat은 실수로 메뉴 바에서 앱을 제거하면 되돌릴 수 있는 방법이 없어 영원히 앱 환경 설정에 접근할 수가 없다.</p>
+<h2>AltTab</h2>
+<p><a href="https://alt-tab-macos.netlify.app/">https://alt-tab-macos.netlify.app/</a></p>
+<p><img src="20250302_2.png" alt="alttab example" /></p>
+<p>MacOS의 기본 Command-Tab 동작을 Windows 스타일로 바꿀 수 있는 소프트웨어다.</p>
+<p>나는 맥의 Space를 나름의 규칙을 가지고 분류해서 사용하는데, MacOS 기본 Command-Tab은 다른 Space에 있는 소프트웨어를 표시하는 점이 불편했고, 하나의 소프트웨어가 여러 개 창을 갖는 경우에도 특정 창을 지정해서 포커스를 옮기기가 번거로웠다.</p>
+<p>이 소프트웨어를 사용하면 한 개의 Finder를 이용해서 여러 개 창을 열어두어도 각각의 창을 따로따로 Command-Tab을 이용해서 접근이 가능하다.</p>
+<h2>Hidden Bar</h2>
+<p><a href="https://apps.apple.com/kr/app/hidden-bar/id1452453066?mt=12">https://apps.apple.com/kr/app/hidden-bar/id1452453066?mt=12</a></p>
+<p>메뉴 바에 표시하고싶지 않는 아이콘들을 이 프로그램을 이용해 숨길 수 있다.<br />
+또한 토글 기능을 통해서 숨겨 두었던 아이콘을 잠깐 다시 볼 수도 있다.</p>
+<p>사내 보안 정책으로 반드시 설치해야 했던 숨김 처리가 불가능한 보안 프로그램 등을 보이지 않게 하는 용도로 유용하게 사용했다.</p>
