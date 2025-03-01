@@ -1,0 +1,25 @@
+name: Run MD to HTML Script on Master Push
+
+on:
+  push:
+    branches:
+      - master # master 브랜치에 push될 때 실행
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest # 실행 환경 설정
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4 # 저장소 체크아웃
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # Node.js 버전 (필요에 따라 변경)
+
+      - name: Install Dependencies
+        run: npm install # 필요한 패키지 설치
+
+      - name: Run NPM Script
+        run: npm run start

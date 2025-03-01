@@ -1,0 +1,9 @@
+#articles {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+#articles a {
+  text-decoration: none;
+}
