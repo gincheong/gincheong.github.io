@@ -16,6 +16,8 @@ function mdToHtml() {
 
     const htmlFilePath = markdownFilePath.replace(/\.md$/, '.html');
 
+    console.log(`✅ ${path.parse(markdownFilePath).name}.html 생성 완료!`);
+
     fs.writeFileSync(htmlFilePath, html, { flag: 'w' });
   });
 }
