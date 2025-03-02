@@ -21,7 +21,6 @@ if [ -n "$(git status --porcelain)" ]; then
   git commit -m "Automated changes by post-commit Hook"
 
   echo "Generated files committed by post-commit hook."
-  echo "Don't forget to push commit."
 else
   echo "No changes to commit. Skipping commit."
 fi
