@@ -31,11 +31,15 @@ function makeArticleListHtml() {
   const articleDom = new DOMParser().parseFromString(articleIndex, 'text/html');
 
   const links = htmlFiles.map((htmlFilePath) => {
-    const li = articleDom.createElement('li');
+    const filePathWithoutExtension = path.parse(htmlFilePath).name;
+
     const anchor = articleDom.createElement('a');
-    anchor.setAttribute('href', `/${htmlFilePath}`);
-    anchor.textContent = path.parse(htmlFilePath).name;
+    anchor.setAttribute('href', `/${filePathWithoutExtension}`);
+    anchor.textContent = filePathWithoutExtension;
+
+    const li = articleDom.createElement('li');
     li.appendChild(anchor);
+
     return li;
   });
 
