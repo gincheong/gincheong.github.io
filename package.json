@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
+    "start": "yarn make-html & yarn make-sitemap",
     "make-html": "ts-node src/html.ts",
     "make-sitemap": "ts-node src/sitemap.ts"
   },

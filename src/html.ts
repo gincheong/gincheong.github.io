@@ -31,10 +31,9 @@ function makeArticleListHtml() {
   const articleDom = new DOMParser().parseFromString(articleIndex, 'text/html');
 
   const links = htmlFiles.map((htmlFilePath) => {
-    const filePathWithoutExtension = path.parse(htmlFilePath).name;
-
     const anchor = articleDom.createElement('a');
-    anchor.setAttribute('href', `/${filePathWithoutExtension}`);
+    anchor.setAttribute('href', `/${htmlFilePath}`);
+    const filePathWithoutExtension = path.parse(htmlFilePath).name;
     anchor.textContent = filePathWithoutExtension;
 
     const li = articleDom.createElement('li');
