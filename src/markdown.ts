@@ -1,4 +1,6 @@
+import { readFileSync } from 'fs';
 import Showdown from 'showdown';
+import { DOMParser } from 'xmldom';
 
 const converter = new Showdown.Converter();
 converter.setOption('noHeaderId', true);
@@ -6,27 +8,25 @@ converter.setOption('simpleLineBreaks', true);
 converter.setOption('tables', true);
 converter.setOption('strikethrough', true);
 
-const Routes = [
-  {
-    name: 'home',
-    path: '/',
-  },
-  {
-    name: 'articles',
-    path: '/articles',
-  },
-  {
-    name: 'about',
-    path: '/about',
-  },
-];
-
 export function makeHtml(fileName: string, contents: string) {
-  const html = converter.makeHtml(contents);
+  const template = readFileSync('src/templates/articles.html').toString();
 
-  const title = `<title>2-19 / articles / ${fileName}</title>`;
-  const anchors = Routes.map(({ name, path }) => `<a href="${path}">${name}</a>`).join('\n');
-  const nav = `<header><nav>\n${anchors}\n</nav></header>`;
+  const dom = new DOMParser().parseFromString(template, 'text/html');
 
-  return [title, nav, html].join('\n');
+  const $title = dom.getElementsByTagName('title')[0];
+  $title && ($title.textContent = `2-19 / articles / ${fileName}`);
+
+  const htmlText = converter.makeHtml(contents);
+  const html = new DOMParser({
+    errorHandler: {
+      warning: undefined,
+      error: console.error,
+      fatalError: console.error,
+    },
+  }).parseFromString(htmlText, 'text/html');
+
+  const $section = dom.getElementsByTagName('section')[0];
+  $section.appendChild(html);
+
+  return dom.toString();
 }
