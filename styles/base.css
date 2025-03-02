@@ -1,0 +1,25 @@
+@media (prefers-color-scheme: light) {
+  :not(a) {
+    color: black;
+    background-color: white;
+  }
+  nav a:visited {
+    color: #0000ee;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :not(a) {
+    color: white;
+    background-color: black;
+  }
+  nav a:visited {
+    color: #567ace;
+  }
+  a:not(a:visited) {
+    color: #567ace;
+  }
+  a:visited {
+    color: #99008b;
+  }
+}
