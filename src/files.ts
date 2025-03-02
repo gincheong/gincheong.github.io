@@ -3,14 +3,12 @@ import path from 'path';
 
 export function readDirectory(dirPath: string) {
   let files: string[] = [];
-  let folders: string[] = [];
 
   function traverseDirectory(currentPath: string) {
     const items = fs.readdirSync(currentPath);
     for (const item of items) {
       const fullPath = path.join(currentPath, item);
       if (fs.statSync(fullPath).isDirectory()) {
-        folders.push(fullPath);
         traverseDirectory(fullPath);
       } else {
         files.push(fullPath);
@@ -19,7 +17,7 @@ export function readDirectory(dirPath: string) {
   }
 
   traverseDirectory(dirPath);
-  return { files, folders };
+  return { files };
 }
 
 export function filterFileWithExt(fileName: string, ext: string) {
