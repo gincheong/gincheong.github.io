@@ -53,9 +53,9 @@ function makeArticleListHtml() {
   fs.writeFileSync(ARTICLE_INDEX_HTML_PATH, String(articleDom), { flag: 'w' });
 }
 
-function main() {
+function makeHTML() {
   mdToHtml();
   makeArticleListHtml();
 }
 
-main();
+makeHTML();

@@ -92,7 +92,7 @@ ${urls.join('\n')}
 /**
  * 사이트맵을 생성하고 파일로 저장
  */
-function createSitemap() {
+function makeSitemap() {
   const htmlFiles = getHtmlFiles(TARGET_DIR);
   const sitemapXml = generateSitemapXml(htmlFiles);
 
@@ -101,4 +101,4 @@ function createSitemap() {
 }
 
 // 실행
-createSitemap();
+makeSitemap();
