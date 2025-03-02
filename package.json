@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "make-html": "ts-node src/html.ts",
+    "make-sitemap": "ts-node src/sitemap.ts"
   },
   "homepage": "https://gincheong.github.io",
   "repository": "https://github.com/gincheong/gincheong",
