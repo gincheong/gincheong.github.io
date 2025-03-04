@@ -6,6 +6,22 @@
   nav a:visited {
     color: #0000ee;
   }
+
+  h2 {
+    color: #0077ff;
+  }
+  h3 {
+    color: #2e7d32;
+  }
+  h4 {
+    color: #ff9900;
+  }
+  h5 {
+    color: #e91e63;
+  }
+  h6 {
+    color: #d32f2f;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,5 +37,21 @@
   }
   a:visited {
     color: #bb77aa;
+  }
+
+  h2 {
+    color: #0066cc;
+  }
+  h3 {
+    color: #4caf50;
+  }
+  h4 {
+    color: #ff9800;
+  }
+  h5 {
+    color: #e91e63;
+  }
+  h6 {
+    color: #d32f2f;
   }
 }
