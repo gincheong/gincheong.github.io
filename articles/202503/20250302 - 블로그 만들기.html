@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta charset="UTF-8"/>
-    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png"/>
-    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png"/>
-    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png"/>
-    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png"/>
-    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png"/>
-    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png"/>
-    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png"/>
-    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png"/>
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png"/>
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-icon-192x192.png"/>
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"/>
-    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png"/>
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"/>
-    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon"/>
-    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Front-end Developer Ingyu, Lee"/>
-    <meta property="og:url" content="https://gincheong.github.io/gincheong"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:title" content="2-19"/>
-    <meta property="og:description" content="Front-end Developer Ingyu, Lee"/>
-    <meta name="twitter:card" content="Front-end Developer Ingyu, Lee"/>
-    <meta name="twitter:title" content="2-19"/>
-    <meta name="twitter:description" content="Front-end Developer Ingyu, Lee"/>
-    <link rel="stylesheet" href="/styles/base.css"/>
+    <meta charset="UTF-8" />
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Front-end Developer Ingyu, Lee" />
+    <meta property="og:url" content="https://gincheong.github.io/gincheong" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="2-19" />
+    <meta property="og:description" content="Front-end Developer Ingyu, Lee" />
+    <meta name="twitter:card" content="Front-end Developer Ingyu, Lee" />
+    <meta name="twitter:title" content="2-19" />
+    <meta name="twitter:description" content="Front-end Developer Ingyu, Lee" />
+    <link rel="stylesheet" href="/styles/base.css" />
     <title>2-19 / articles / 20250302 - 블로그 만들기</title>
   </head>
   <body>
@@ -37,18 +38,38 @@
         <a href="/about">about</a>
       </nav>
     </header>
-    <section><h1>20250302 - 블로그 만들기</h1>
-<p>이 디자인이라곤 하나도 적용되지 않은 홈페이지를 만들었다.<br/>
-보통 Jekyll기반으로 디자인이 적용된 템플릿들을 많이 사용하던데 갑자기 무슨 바람이 들어서 직접 만들게 됨<br/>
-NextJS를 쓰면 SEO도 잘 된 정적 페이지들을 만드는 것도 가능하겠지만 그냥 해보고 싶었다.</p>
-<p>기본적으로는 마크다운으로 글을 쓰면, 그게 html로 변환되는 방식이 되길 원했다.<br/>
-내가 articles라는 파일 밑에 마크다운 파일을 만들고, 이것을 커밋하면 git의 post-commit훅에서 HTML파일을 생성하고, 생성된 HTML 파일들에 대한 사이트맵을 만드는 스크립트를 실행한다.</p>
-<p>마크다운을 HTML로 변환하는 데는 <a href="https://github.com/showdownjs/showdown">Showdown</a>을 사용했고, 사이트맵 파일 및 각종 HTML을 다루는 데에는 <a href="https://github.com/xmldom/xmldom">xmldom</a>을 사용했다.</p>
-<p>상대적으로 기본이라 할 수 있는 TypeScript 관련 라이브러리 말고 외부 의존성은 딱 저 두 개만 사용함<br/>
-대신 스크립트 쪽은 GPT한테 대부분 시켰다. 확실히 손이 덜 간다.</p>
-<p>포털에서 검색될 수 있도록 네이버 서치어드바이저와 구글 서치 콘솔에도 사이트를 등록했다.</p>
-<p>이전에 지킬 템플릿을 적용해서 동일 도메인으로 github pages를 배포해놨어서 그런지 이미 구글에서는 이전 홈페이지의 favicon등을 캐싱하고 있던데 조만간 업데이트되길 바람</p>
-<p>블로그랍시고 이런저런 템플릿 같은 걸 여러 번 시도해봤는데 결국 오래 간 적이 없는 것 같다<br/>
-이번에도 그럴 지도 모름</p></section>
+    <section>
+      <h1>20250302 - 블로그 만들기</h1>
+      <p>
+        이 디자인이라곤 하나도 적용되지 않은 홈페이지를 만들었다.<br />
+        보통 Jekyll기반으로 디자인이 적용된 템플릿들을 많이 사용하던데 갑자기 무슨 바람이 들어서
+        직접 만들게 됨<br />
+        NextJS를 쓰면 SEO도 잘 된 정적 페이지들을 만드는 것도 가능하겠지만 그냥 해보고 싶었다.
+      </p>
+      <p>
+        기본적으로는 마크다운으로 글을 쓰면, 그게 html로 변환되는 방식이 되길 원했다.<br />
+        내가 articles라는 파일 밑에 마크다운 파일을 만들고, 이것을 커밋하면 git의 post-commit훅에서
+        HTML파일을 생성하고, 생성된 HTML 파일들에 대한 사이트맵을 만드는 스크립트를 실행한다.
+      </p>
+      <p>
+        마크다운을 HTML로 변환하는 데는
+        <a href="https://github.com/showdownjs/showdown">Showdown</a>을 사용했고, 사이트맵 파일 및
+        각종 HTML을 다루는 데에는 <a href="https://github.com/xmldom/xmldom">xmldom</a>을 사용했다.
+      </p>
+      <p>
+        상대적으로 기본이라 할 수 있는 TypeScript 관련 라이브러리 말고 외부 의존성은 딱 저 두 개만
+        사용함<br />
+        대신 스크립트 쪽은 GPT한테 대부분 시켰다. 확실히 손이 덜 간다.
+      </p>
+      <p>포털에서 검색될 수 있도록 네이버 서치어드바이저와 구글 서치 콘솔에도 사이트를 등록했다.</p>
+      <p>
+        이전에 지킬 템플릿을 적용해서 동일 도메인으로 github pages를 배포해놨어서 그런지 이미
+        구글에서는 이전 홈페이지의 favicon등을 캐싱하고 있던데 조만간 업데이트되길 바람
+      </p>
+      <p>
+        블로그랍시고 이런저런 템플릿 같은 걸 여러 번 시도해봤는데 결국 오래 간 적이 없는 것 같다<br />
+        이번에도 그럴 지도 모름
+      </p>
+    </section>
   </body>
 </html>
