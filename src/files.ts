@@ -11,7 +11,9 @@ export function readDirectory(dirPath: string) {
       if (fs.statSync(fullPath).isDirectory()) {
         traverseDirectory(fullPath);
       } else {
-        files.push(fullPath);
+        if (path.parse(fullPath).name !== '.DS_Store') {
+          files.push(fullPath);
+        }
       }
     }
   }

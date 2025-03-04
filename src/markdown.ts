@@ -26,7 +26,7 @@ export function makeHtml(fileName: string, contents: string) {
   }).parseFromString(htmlText, 'text/html');
 
   const $section = dom.getElementsByTagName('section')[0];
-  $section.appendChild(html);
+  $section.appendChild(html ?? '');
 
   return dom.toString();
 }
