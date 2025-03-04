@@ -1,3 +1,8 @@
+p,
+li {
+  line-height: 1.5rem;
+}
+
 @media (prefers-color-scheme: light) {
   :not(a) {
     color: #000;
