@@ -16,6 +16,13 @@ function mdToHtml() {
 
     const htmlFilePath = markdownFilePath.replace(/\.md$/, '.html');
 
+    if (fs.existsSync(htmlFilePath)) {
+      const existingHtml = fs.readFileSync(htmlFilePath).toString();
+      if (existingHtml === html) {
+        return; // 내용이 같으면 업데이트하지 않음
+      }
+    }
+
     fs.writeFileSync(htmlFilePath, html, { flag: 'w' });
   });
 }
