@@ -24,6 +24,8 @@ if [ -n "$(git status --porcelain)" ]; then
   # articles 밑의 *.html을 전부 찾아 git add한다.
   find articles -name "*.html" -exec git add {} +
 
+  git add sitemap.xml
+
   echo "Generated files staged by post-commit hook."
 else
   echo "No changes to stage. Skipping stage."
