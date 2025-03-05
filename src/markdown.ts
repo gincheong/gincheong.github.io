@@ -7,6 +7,7 @@ converter.setOption('noHeaderId', true);
 converter.setOption('simpleLineBreaks', true);
 converter.setOption('tables', true);
 converter.setOption('strikethrough', true);
+converter.setOption('literalMidWordUnderscores', true); // * underscore를 문자로 쓰게 함
 
 export function makeHtml(fileName: string, contents: string) {
   const template = readFileSync('src/templates/articles.html').toString();
