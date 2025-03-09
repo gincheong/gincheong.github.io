@@ -1,3 +1,16 @@
+html {
+  width: 100vw;
+}
+
+body {
+  width: 1024px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+
+  background-color: red;
+}
+
 p,
 li {
   line-height: 1.5rem;
