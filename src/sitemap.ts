@@ -4,7 +4,7 @@ import * as path from 'path';
 const BASE_URL = 'https://gincheong.github.io';
 const TARGET_DIR = './'; // 사이트 파일이 저장된 폴더
 const SPECIAL_DIRS = ['articles']; // 이 디렉토리 내 파일은 모두 포함
-const EXCLUDED_DIRS = ['about']; // 제외할 디렉토리 목록
+const EXCLUDED_DIRS: string[] = []; // 제외할 디렉토리 목록
 
 /**
  * 특정 디렉토리가 제외 목록(EXCLUDED_DIRS)에 포함되는지 확인
