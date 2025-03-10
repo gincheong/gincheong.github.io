@@ -1,9 +1,69 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
+@import url('https://cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css');
 
 * {
   font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
     Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+@media (prefers-color-scheme: light) {
+  html {
+    background-color: #f2f2f2;
+  }
+  :not(a) {
+    color: #000;
+  }
+  nav a:visited {
+    color: #0000ee;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #567ace;
+  }
+  pre:has(code[class*='language-']) {
+    background-color: #e0e0e0;
+    padding: 6px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    background-color: #222;
+  }
+  :not(a) {
+    color: #f2f2f2;
+  }
+  nav a:visited {
+    color: #567ace;
+  }
+  a:not(a:visited) {
+    color: #567ace;
+  }
+  a:visited {
+    color: #bb77aa;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #7eb0fc;
+  }
+  pre:has(code[class*='language-']) {
+    background-color: #444;
+    padding: 6px;
+  }
+}
+
+code[class*='language-'] {
+  font-size: 0.9rem;
+  font-family: 'Hack';
 }
 
 html {
@@ -23,46 +83,4 @@ body {
 p,
 li {
   line-height: 1.5rem;
-}
-
-@media (prefers-color-scheme: light) {
-  :not(a) {
-    color: #000;
-    background-color: #f2f2f2;
-  }
-  nav a:visited {
-    color: #0000ee;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: #567ace;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :not(a) {
-    color: #f2f2f2;
-    background-color: #222;
-  }
-  nav a:visited {
-    color: #567ace;
-  }
-  a:not(a:visited) {
-    color: #567ace;
-  }
-  a:visited {
-    color: #bb77aa;
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    color: #7eb0fc;
-  }
 }
