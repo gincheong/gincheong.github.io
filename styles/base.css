@@ -1,12 +1,15 @@
 html {
   width: 100vw;
+  overflow-x: hidden;
 }
 
 body {
+  box-sizing: border-box;
   width: 1024px;
   max-width: 100%;
   margin: 0 auto;
   padding: 10px;
+  padding-right: 20px;
 }
 
 p,
@@ -22,21 +25,13 @@ li {
   nav a:visited {
     color: #0000ee;
   }
-
-  h2 {
-    color: #0077ff;
-  }
-  h3 {
-    color: #2e7d32;
-  }
-  h4 {
-    color: #ff9900;
-  }
-  h5 {
-    color: #e91e63;
-  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
   h6 {
-    color: #d32f2f;
+    color: #567ace;
   }
 }
 
@@ -54,20 +49,12 @@ li {
   a:visited {
     color: #bb77aa;
   }
-
-  h2 {
-    color: #0066cc;
-  }
-  h3 {
-    color: #4caf50;
-  }
-  h4 {
-    color: #ff9800;
-  }
-  h5 {
-    color: #e91e63;
-  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
   h6 {
-    color: #d32f2f;
+    color: #fcfc95;
   }
 }
