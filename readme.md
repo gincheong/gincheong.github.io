@@ -9,4 +9,3 @@ $ yarn start
 ```
 
 `yarn make-html`과 `yarn make-sitemap`을 차례로 실행함.
-
