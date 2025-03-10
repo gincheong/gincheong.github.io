@@ -29,7 +29,7 @@ class Profile extends HTMLElement {
         }
       </style>
       <section>
-        <h3>프로필</h3>
+        <h2>프로필</h2>
         <dl class="profile">
           <span>
             <dt>이름</dt>

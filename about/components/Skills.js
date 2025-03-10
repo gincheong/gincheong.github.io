@@ -6,11 +6,18 @@ class Skills extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <link rel="stylesheet" href="/styles/base.css" />
       <style>
+        h3 {
+          margin-bottom: 10px;
+        }
+
         ul {
           display: flex;
           flex-direction: row;
           column-gap: 4px;
+          padding-inline-start: 1rem;
+          margin-block: 4px;
         }
+
         li {
           padding: 2px 6px;
           border-radius: 6px;
