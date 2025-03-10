@@ -13,15 +13,12 @@ class Skills extends HTMLElement {
         ul {
           display: flex;
           flex-direction: row;
-          column-gap: 4px;
+          column-gap: 14px;
           padding-inline-start: 1rem;
           margin-block: 4px;
         }
 
         li {
-          padding: 2px 6px;
-          border-radius: 6px;
-
           font-weight: 700;
 
           list-style: none;

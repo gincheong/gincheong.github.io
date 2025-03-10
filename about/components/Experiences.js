@@ -11,6 +11,7 @@ class Experiences extends HTMLElement {
         }
 
         ul {
+          padding-inline-start: 1.5rem;
           margin-block-start: 0;
         }
 
