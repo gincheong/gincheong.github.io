@@ -61,16 +61,6 @@
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
 }
 
-section#contents * {
-  word-break: break-all;
-  white-space: pre-wrap;
-}
-
-code[class*='language-'] {
-  font-size: 0.9rem;
-  font-family: 'Hack';
-}
-
 html {
   width: 100vw;
   overflow-x: hidden;
@@ -80,6 +70,7 @@ html {
 }
 
 body {
+  overflow-x: hidden;
   width: 1024px;
   max-width: 100%;
   margin: 0 auto;
@@ -88,4 +79,14 @@ body {
 p,
 li {
   line-height: 1.7rem;
+}
+
+section#contents * {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
+code[class*='language-'] {
+  font-size: 0.9rem;
+  font-family: 'Hack';
 }
