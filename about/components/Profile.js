@@ -1,9 +1,9 @@
 class Profile extends HTMLElement {
   constructor() {
     super();
-    this.attachShadow({ mode: 'open' });
+    const shadow = this.attachShadow({ mode: 'closed' });
 
-    this.shadowRoot.innerHTML = `
+    shadow.innerHTML = `
       <link rel="stylesheet" href="/styles/base.css" />
       <style>
         .profile {
