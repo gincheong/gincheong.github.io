@@ -76,11 +76,10 @@ function generateSitemapXml(files: string[]): string {
     // URL 인코딩 적용 (한글 및 특수문자 처리)
     const encodedPath = encodeURI(relativePath);
 
-    return `
-        <url>
-            <loc>${BASE_URL}/${encodedPath}</loc>
-            <lastmod>${lastMod}</lastmod>
-        </url>`;
+    return `  <url>
+    <loc>${BASE_URL}/${encodedPath}</loc>
+    <lastmod>${lastMod}</lastmod>
+  </url>`;
   });
 
   return `<?xml version="1.0" encoding="UTF-8"?>
