@@ -1,12 +1,6 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css');
 @import url('https://cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css');
 
-* {
-  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
-    Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-}
-
 @media (prefers-color-scheme: light) {
   html {
     background-color: #f2f2f2;
@@ -61,6 +55,17 @@
   }
 }
 
+* {
+  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+    Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+}
+
+section#contents * {
+  word-break: break-all;
+  white-space: pre-wrap;
+}
+
 code[class*='language-'] {
   font-size: 0.9rem;
   font-family: 'Hack';
@@ -69,15 +74,15 @@ code[class*='language-'] {
 html {
   width: 100vw;
   overflow-x: hidden;
+  box-sizing: border-box;
+  padding: 10px;
+  padding-right: 20px;
 }
 
 body {
-  box-sizing: border-box;
   width: 1024px;
   max-width: 100%;
   margin: 0 auto;
-  padding: 10px;
-  padding-right: 20px;
 }
 
 p,
