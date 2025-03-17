@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png"/>
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png"/>
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-icon-192x192.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="manifest" href="/manifest.json"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Front-end Developer Ingyu, Lee"/>
+    <meta property="og:url" content="https://gincheong.github.io/gincheong"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="2-19"/>
+    <meta property="og:description" content="Front-end Developer Ingyu, Lee"/>
+    <meta name="twitter:card" content="Front-end Developer Ingyu, Lee"/>
+    <meta name="twitter:title" content="2-19"/>
+    <meta name="twitter:description" content="Front-end Developer Ingyu, Lee"/>
+    <link rel="stylesheet" href="/styles/base.css"/>
+    <title>2-19 / articles / 20250317 - Web Component 간단 사용기</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">home</a>
+        <a href="/articles">articles</a>
+        <a href="/about">about</a>
+      </nav>
+    </header>
+    <section id="contents"><h1>20250317 - Web Component 간단 사용기</h1>
+<p>이 홈페이지의 <a href="/about">/about</a> 페이지는 Web Component를 이용해서 만들었다.<br/>
+Web Component는 Web API 중의 하나로.. 자세한 설명은 <a href="https://developer.mozilla.org/ko/docs/Web/API/Web_components">공식 문서</a>를 참고하는 걸 추천드리고</p>
+<p>여기에서는 Shadow DOM이라는 걸 사용해서 다른 element와 독립된 style이나 script를 작성할 수 있다.<br/>
+요지는 React같은 걸 사용하면서 개발할 때처럼 HTML Element를 컴포넌트라는 단위로 묶어서 개발이 가능하다.</p>
+<p>about페이지에 있는 내용은 읽을 내용은 얼마 안 되지만 직접 작성하는 입장에선 자잘한 마크업까지 치면 양이 꽤 많아진다.<br/>
+여기에 있는 내용은 변경될 수도 있고, 경우에 따라서는 새로 추가될 내용도 있으니 앞으로의 유지보수를 조금이나마 고려하고 싶었다.</p>
+<p>마침 데이터 분리가 확실한 페이지니까, 각각의 소제목에 해당되는 부분을 Web Component로 만들기로 했다.<br/>
+GPT를 통해서 간단한 예시 코드를 받고 <a href="/about/components/Profile.js">Profile.js</a>파일을 만들었다.</p>
+<h3>써보기</h3>
+<pre><code class="js language-js">class Profile extends HTMLElement {
+  constructor() {
+    super();
+    const shadow = this.attachShadow({ mode: 'open' });
+
+    shadow.innerHTML = `
+      &lt;link rel="stylesheet" href="/styles/base.css" />
+      &lt;style>
+        .profile {
+          display: flex;
+          flex-direction: column;
+          row-gap: 10px;
+          width: 400px;
+        }
+      &lt;/style>
+      &lt;section>
+        &lt;h2>프로필&lt;/h2>
+        &lt;div class="profile">
+          &lt;span>프론트엔드 엔지니어&lt;/span>
+          &lt;span>gincheong2@gmail.com&lt;/span>
+        &lt;/div>
+      &lt;/section>
+    `;
+  }
+}
+
+customElements.define('about-profile', Profile);
+</code></pre>
+<p>실제랑은 다르게 내용을 조금 줄였다.</p>
+<h3>Mode</h3>
+<pre><code class="js language-js">const shadow = this.attachShadow({ mode: 'open' });
+</code></pre>
+<p><code>attachShadow</code> 메소드로 Shadow DOM을 사용할 때 <code>mode</code>를 설정할 수 있는데, 이 mode가 <code>closed</code>일 때는 Shadow DOM 외부에서 자바스크립트를 통해 내부를 제어할 수 없게 한다.<br/>
+반대로 <code>open</code>이면 제어가 가능하다.</p>
+<p>나는 확장 프로그램으로 화면의 요소를 제어하는 Vimium을 쓰고 있었기에, <code>closed</code>로 구현하면 Vimium이 동작하지 않게 되므로 <code>open</code>으로 구현했다.<br/>
+이외에도 JavaScript를 통해서 크롤링을 하는 도구 등에 영향을 줄 수도 있을 것 같다.<br/>
+내부 script와 style은 이 설정과 무관하게 독립적으로 관리되니 특별한 사유가 없다면 <code>open</code>으로 해 둬도 좋을 것 같다.<br/>
+어차피 브라우저 개발자 도구를 사용하면 Shadow DOM 내부는 얼마든지 접근이 가능하다.</p>
+<h3>innerHTML?</h3>
+<pre><code class="js language-js">shadow.innerHTML = `
+  &lt;link rel="stylesheet" href="/styles/base.css" />
+    ...
+  &lt;/section>
+`;
+</code></pre>
+<p>나는 innerHTML을 사용하여 DOM 내부에 직접 마크업을 작성해서 입력했다.<br/>
+나는 정적인 데이터만 표시하면 되었기 때문에, 작성하는 데 편의성을 위해서 innerHTML을 사용헀다.<br/>
+알아보는 것 자체는 편리했지만 확장 도구들을 따로 알아보지 않고 작성하느라 들여쓰기나 마크업 자동완성 등이 전혀 동작하지 않아 불편한 점은 있었다.</p>
+<p>이 방법 대신 각각의 요소를 <code>createElement</code>로 만들어서 <code>appendChild</code>를 반복하는 식으로도 구현이 가능하다.</p>
+<h3>createElement</h3>
+<pre><code class="js language-js">class MyElement extends HTMLElement {
+  constructor() {
+    super();
+    const shadow = this.attachShadow({ mode: 'open' });
+    this.count = 0;
+
+    this.paragraph = document.createElement('p');
+    this.paragraph.innerText = String(this.count);
+
+    const plusButton = document.createElement('button');
+    plusButton.innerText = '+';
+    plusButton.onclick = () => this.updateCount(++this.count);
+
+    const minusButton = document.createElement('button');
+    minusButton.innerText = '-';
+    minusButton.onclick = () => this.updateCount(--this.count);
+
+    const section = document.createElement('section');
+    section.appendChild(this.paragraph);
+    section.appendChild(plusButton);
+    section.appendChild(minusButton);
+
+    shadow.appendChild(section);
+  }
+
+  updateCount(newCount) {
+    this.paragraph.innerText = this.count;
+  }
+}
+
+customElements.define('my-element', MyElement);
+</code></pre>
+<p>예시처럼 상태값에 따라 화면을 업데이트할 필요가 있다면 요소를 createElement로 만들고, 해당 요소의 값만 바꾸는 식으로 구현하면 될 것이다.<br/>
+전체 innerHTML을 다시 그리게 하는 방법도 가능하지만, 이렇게 하면 <code>p</code>태그만 리렌더링되기 때문에 렌더링 최적화가 가능하다.<br/>
+대신 이건 실제 마크업이 어떻게 배치되었는지 알아보기가 어려운 점이 있었다.<br/>
+두 개를 적절히 짬뽕해서 작성 편의성도 챙기되 업데이트 최적화를 할 수 있는 방법이 없을까? -> <a href="https://lit.dev/">Lit.dev</a></p>
+<p>비슷한 고민거리를 통해서 React, Vue, Svelte 등에서 고유 확장자를 가진 파일들이 생겨난 게 아닌가 싶다. 아닐수도?<br/>
+물론 이 프레임워크들이 Shadow DOM을 쓰는 건 아니다.</p>
+<h3>써보고 난 느낌</h3>
+<p>예전에는 웹 브라우저별로 자바스크립트를 동작시키는 방식이 제각각이어서, 브라우저 간 차이를 해소해주는 jQuery가 크게 각광받았다고 한다.<br/>
+그러면서 자연스레 프론트엔드 개발에는 어떤 라이브러리가 병행되었고, "순수 자바스크립트도 가능하다"라는 의미를 강조하기 위해 자바스크립트라는 언어에만 특히나 "바닐라 자바스크립트"라는 키워드가 생겼다고 한다.<br/>
+jQuery는 이제 쓰임새가 많이 줄었지만, 그 자리를 React나 Vue와 같은 프레임워크가 대신하여 여전히 프론트엔드 개발은 외부 모듈의 의존성이 크다.<br/>
+IT업계는 Lightweight가 강조되는 곳이기 때문에 바닐라 자바스크립트를 경험해 보는 것도 내 식견을 넓히는 데 도움이 되지 않을까 생각한다.</p>
+<p>그치만 쓰기 불편하다는 느낌이 가시진 않는다.</p></section>
+  </body>
+</html>
