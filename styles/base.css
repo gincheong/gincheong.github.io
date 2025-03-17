@@ -83,7 +83,6 @@ li {
 
 section#contents * {
   word-break: break-all;
-  white-space: pre-wrap;
 }
 
 code[class*='language-'] {
