@@ -1,7 +1,7 @@
 class Skills extends HTMLElement {
   constructor() {
     super();
-    const shadow = this.attachShadow({ mode: 'closed' });
+    const shadow = this.attachShadow({ mode: 'open' });
 
     shadow.innerHTML = `
       <link rel="stylesheet" href="/styles/base.css" />
