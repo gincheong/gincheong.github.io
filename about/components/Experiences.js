@@ -35,6 +35,24 @@ class Experiences extends HTMLElement {
         <h2>경력</h3>
 
         <article>
+          <h3>주식회사샵라이브코리아 <small>(2025.03 ~ 재직중)</small></h3>
+
+          <dl>
+            <dt>샵라이브 Admin 서비스</dt>
+            <dd>라이브 스트리밍 관리 어드민 서비스 React 웹 개발</dd>
+            <dd>
+              <a
+                target="_blank"
+                href="https://adm.shoplive.cloud/"
+                >adm.shoplive.cloud</a
+              >
+            </dd>
+          </dl>
+        </article>
+
+        <br>
+
+        <article>
           <h3>주)제네시스랩 <small>(2020.01 ~ 2023.11)</small></h3>
 
           <dl>
