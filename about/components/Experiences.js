@@ -35,7 +35,11 @@ class Experiences extends HTMLElement {
         <h2>경력</h3>
 
         <article>
-          <h3>주식회사샵라이브코리아 <small>(2025.03 ~ 재직중)</small></h3>
+          <h3>
+            <a href="https://www.shoplive.cloud/kr">주식회사샵라이브코리아</a>
+            <small>(2025.03 ~ 재직중)</small>
+          </h3>
+          
 
           <dl>
             <dt>샵라이브 Admin 서비스</dt>
@@ -53,8 +57,10 @@ class Experiences extends HTMLElement {
         <br>
 
         <article>
-          <h3>주)제네시스랩 <small>(2020.01 ~ 2023.11)</small></h3>
-
+          <h3>
+            <a href="https://home.genesislab.ai/">주)제네시스랩</a>
+            <small>(2020.01 ~ 2023.11)</small>
+          </h3>
           <dl>
             <dt>정신건강 관리 서비스 Dr.Listen</dt>
             <dd>React Native 모바일 앱 하이브리드 개발</dd>
@@ -104,8 +110,11 @@ class Experiences extends HTMLElement {
         <br>
 
         <article>
-          <h3>원데이코리아 <small>(2019.04 ~ 2020.01)</small></h3>
-
+        
+          <h3>
+            <a href="https://www.onedaykorea.com/">원데이코리아</a>
+            <small>(2019.04 ~ 2020.01)</small>
+          </h3>
           <dl>
             <dt>인공지능 챗봇 Tumakr 개발</dt>
             <dd>챗봇 프론트엔드 개발 담당</dd>
