@@ -1,4 +1,4 @@
-class Skills extends HTMLElement {
+class Posts extends HTMLElement {
   constructor() {
     super();
     const shadow = this.attachShadow({ mode: 'open' });
@@ -26,13 +26,11 @@ class Skills extends HTMLElement {
         }
       </style>
       <section>
-        <h3>Techs</h3>
+        <h3>Posts</h3>
         <ul>
-          <li>React</li>
-          <li>React Native</li>
-          <li>Svelte</li>
-          <li>Python</li>
-          <li>GraphQL</li>
+          <a href='/articles/202503/20250302/20250302 - 유용하게 쓰고 있는 맥용 소프트웨어들.html'>
+            유용하게 쓰고 있는 맥용 소프트웨어들
+          </a>
         </ul>
 
       </section> 
@@ -40,4 +38,4 @@ class Skills extends HTMLElement {
   }
 }
 
-customElements.define('about-skills', Skills);
+customElements.define('about-posts', Posts);

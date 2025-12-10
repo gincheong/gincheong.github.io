@@ -40,17 +40,20 @@ class Experiences extends HTMLElement {
             <small>(2025.03 ~ 재직중)</small>
           </h3>
           
-
           <dl>
             <dt>샵라이브 Admin 서비스</dt>
             <dd>라이브 스트리밍 관리 어드민 서비스 React 웹 개발</dd>
-            <dd>
-              <a
-                target="_blank"
-                href="https://adm.shoplive.cloud/"
-                >adm.shoplive.cloud</a
-              >
-            </dd>
+          </dl>
+
+          <dl>
+            <dt>샵라이브 Live Player</dt>
+            <dd>라이브 스트리밍을 재생하는 플레이어 서비스 Svelte 웹 개발</dd>
+          </dl>
+
+          <dl>
+            <dt>Live Player + Admin E2E 테스트 코드 개발</dt>
+            <dd>Playwright 기반의 E2E 서비스 개발</dd>
+            <dd>서비스 배포 전/후로의 안정성 확대</dd>
           </dl>
         </article>
 
@@ -77,15 +80,13 @@ class Experiences extends HTMLElement {
                 >Google Play</a
               >
               /
-              <a target="_blank" href="https://home.drlisten.ai">Homepage</a>
+              <a target="_blank" href="https://home.drlisten.ai">서비스 소개 홈페이지</a>
             </dd>
             <br>
             <dt>콘텐츠 에디터 Zuicy Studio</dt>
             <dd>모바일 앱 Zuicy의 콘텐츠 에디터 Zuicy Studio 웹 개발</dd>
             <dd>
-              <a target="_blank" href="https://studio.zuicy.ai/">Studio</a>
-              /
-              <a target="_blank" href="https://home.zuicy.ai/">Homepage</a>
+              <a target="_blank" href="https://home.zuicy.ai/">모바일 앱 Zuicy 소개 홈페이지</a>
             </dd>
             <br>
             <dt>B2B 영상 면접 서비스 Viewinter HR 백오피스 툴</dt>
