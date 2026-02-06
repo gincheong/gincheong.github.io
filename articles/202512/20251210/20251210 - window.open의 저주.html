@@ -122,6 +122,9 @@ iframe이 아니면 <code>window.self</code>와 <code>window.top</code>이 동�
 <p><code>window.open</code>을 사용할 때는 보안상의 이유로도, 이런 예상치 못한 버그를 방지하기 위해서도 <code>noopener</code> 옵션을 붙이는 게 좋다.</p>
 <pre><code class="js language-js">window.open(url, '_blank', 'noopener');
 </code></pre>
-<p>그리고 함수 간의 순환 참조 구조는 언제나 위험하다. 특히 네트워크 요청과 에러 핸들링이 엮여있을 때는 더더욱.</p></section>
+<p>그리고 함수 간의 순환 참조 구조는 언제나 위험하다. 특히 네트워크 요청과 에러 핸들링이 엮여있을 때는 더더욱.</p>
+<p>문제의 원인 자체가 애당초 복잡한 시스템에서 기인한 것이라, 해결 방법이라고 적용한 것들도 눈물나게 어지럽다.</p>
+<hr/>
+<p>이 글은 Cursor CLI에서 Claude 에이전트를 통해 초안이 작성되었습니다.</p></section>
   </body>
 </html>
