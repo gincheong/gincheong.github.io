@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="UTF-8"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/apple-icon-57x57.png"/>
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/apple-icon-60x60.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/apple-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/apple-icon-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/apple-icon-114x114.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/apple-icon-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/apple-icon-144x144.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-icon-152x152.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-icon-180x180.png"/>
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/android-icon-192x192.png"/>
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"/>
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon-96x96.png"/>
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="manifest" href="/manifest.json"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Front-end Developer Ingyu, Lee"/>
+    <meta property="og:url" content="https://gincheong.github.io/gincheong"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="2-19"/>
+    <meta property="og:description" content="Front-end Developer Ingyu, Lee"/>
+    <meta name="twitter:card" content="Front-end Developer Ingyu, Lee"/>
+    <meta name="twitter:title" content="2-19"/>
+    <meta name="twitter:description" content="Front-end Developer Ingyu, Lee"/>
+    <link rel="stylesheet" href="/styles/base.css"/>
+    <title>2-19 / articles / 20251210 - window.open의 저주</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="/">home</a>
+        <a href="/articles">articles</a>
+        <a href="/about">about</a>
+      </nav>
+    </header>
+    <section id="contents"><h1>20251210 - window.open의 저주</h1>
+<p>기묘한 버그를 경험했다.</p>
+<p>우리는 React로 어드민 서비스를 하나 개발해서 쓰고 있는데, 이 프로젝트가 CRA를 기반으로 생성되었고 각종 빌드 설정을 커스터마이징하기 위해 CRA가 eject된 상태였다.<br/>
+이런저런 복잡한 설정들이 덧붙여져있고, 기본적으로 webpack은 느리기 때문에 패키지를 처음 내려받고 빌드를 하면 약 50초정도가 걸린다, 심지어는 dev 환경 실행도 그 정도 시간이 걸릴 때가 있다.</p>
+<p>이러한 고질적인 문제를 해결하고자 번들러를 Vite로 변경하기로 하고, 다른 동료분과 함께 패키지를 정리하고, webpack에 덕지덕지 붙은 플러그인 설정들을 옮기는 등의 작업을 했다.<br/>
+번들러 교체 작업을 마친 후에 기능들이 다 정상적으로 작동한다고 생각하고, 최근에 이를 운영서버에 반영했다.</p>
+<h2>문제 현상</h2>
+<p>운영 반영 후에 이상한 버그가 리포트됐다.<br/>
+방송 상세 페이지에서 "방송 콘솔" 버튼을 눌러 새 창으로 콘솔 페이지를 띄웠다가, 로딩 UI가 나타나는 시점에 콘솔 창을 닫으면 방송 상세 페이지가 먹통이 되는 현상이었다.<br/>
+Chrome 브라우저에서만 재현되는 문제였고, 상시 재현이 가능했기 때문에 이 케이스를 중점으로 디버깅을 진행했다.</p>
+<h2>배경</h2>
+<p>우리 서비스에는 특정 파트너사 전용 환경이 있는데, 이 환경에서는 우리 콘솔 페이지를 iframe으로 띄워서 사용한다.<br/>
+이 환경에서 API 호출 시 에러가 발생하면 로그를 남기기 위해 로깅 함수를 만들어서 사용하고 있었다.</p>
+<pre><code class="js language-js">export const postCallbackHistoryInIframe = (...) => {
+  // ...
+  if (window.self !== window.top) {
+    return defaultFetch(`${API_ENDPOINT}/some/logging/api`, 'POST', data);
+  }
+  return;
+}
+</code></pre>
+<p><code>window.self !== window.top</code> 조건은 현재 페이지가 iframe 안에서 실행되고 있는지 확인하는 코드다.<br/>
+iframe이 아니면 <code>window.self</code>와 <code>window.top</code>이 동일하니까.</p>
+<p>이 로깅 함수는 <code>defaultFetch</code> 함수 내부에서 다음 세 가지 케이스에 실행되도록 되어있었다.</p>
+<ol>
+<li>API 호출에 성공했는데 응답이 ok가 아닐 경우</li>
+<li>API 호출에 성공했는데 응답이 JSON이 아닐 때</li>
+<li>API 호출이 실패했을 때</li>
+</ol>
+<h2>원인</h2>
+<p>방송 상세에서 "방송 콘솔" 페이지를 열 때 <code>window.open(url, '_blank')</code> 코드를 사용하고 있었다.<br/>
+문제는 여기서 <code>noopener</code> 옵션을 전달하지 않았다는 것이다.</p>
+<p><code>noopener</code> 옵션 없이 <code>window.open</code>을 호출하면 부모 창과 자식 창이 서로 참조를 갖게 된다.<br/>
+자식 창에서는 <code>window.opener</code>로 부모를 참조할 수 있고, 부모 창은 자식의 실행 컨텍스트에 영향을 받게 된다.</p>
+<p>문제의 시나리오는 이랬다.</p>
+<ol>
+<li>방송 콘솔 페이지가 열리면서 많은 API를 호출함</li>
+<li>API 호출이 마무리되기 전에 사용자가 콘솔 창을 닫음</li>
+<li>진행 중이던 네트워크 요청들이 abort됨</li>
+<li>abort된 요청은 "API 호출 실패" 케이스에 해당되어 로깅 함수가 실행됨</li>
+<li>이 시점에서 페이지는 이미 닫혀있기 때문에 <code>window.top</code>이 <code>null</code>이 됨</li>
+<li><code>window.self !== window.top</code> 조건을 만족해버림 (self는 존재하고 top은 null이니까)</li>
+<li>로그 작성 API를 실행하기 위해 <code>defaultFetch</code>가 호출됨</li>
+<li>페이지가 닫혀있으니 이 요청도 abort됨</li>
+<li>또 로깅 함수가 실행됨</li>
+<li>4~9 무한 반복</li>
+</ol>
+<p>이렇게 무한 루프가 돌면서 Heap Size가 끝없이 증가하고, 결국 부모 페이지가 crash되는 것이었다.</p>
+<h2>해결</h2>
+<p>두 가지 수정을 적용했다.</p>
+<p>첫 번째로, 로깅 함수 시작 부분에서 창이 닫힌 상태이거나 <code>window.top</code>이 null인 경우 early return 처리를 추가했다.</p>
+<pre><code class="js language-js">export const postCallbackHistoryInIframe = (...) => {
+  // ...
+
+  if (window.closed || window.top === null) {
+    return;
+  }
+
+  if (window.self !== window.top) {
+    return defaultFetch(`${API_ENDPOINT}/some/logging/api`, 'POST', data);
+  }
+  return;
+}
+</code></pre>
+<p>두 번째로, 로깅 함수 내에서 <code>defaultFetch</code>를 사용하지 않고 일반 <code>fetch</code>를 사용하도록 변경했다.<br/>
+<code>로깅 함수 → defaultFetch → 로깅 함수 → defaultFetch → ...</code> 순환 구조 자체를 끊어내기 위함이다.</p>
+<pre><code class="js language-js">if (window.self !== window.top) {
+  fetch(`${API_ENDPOINT}/some/logging/api`, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'omit',
+    headers: {
+      'Content-Type': 'application/json',
+      ...getToken(),
+    },
+    body: JSON.stringify(data),
+  });
+}
+</code></pre>
+<h2>교훈</h2>
+<p><code>window.open</code>을 사용할 때는 보안상의 이유로도, 이런 예상치 못한 버그를 방지하기 위해서도 <code>noopener</code> 옵션을 붙이는 게 좋다.</p>
+<pre><code class="js language-js">window.open(url, '_blank', 'noopener');
+</code></pre>
+<p>그리고 함수 간의 순환 참조 구조는 언제나 위험하다. 특히 네트워크 요청과 에러 핸들링이 엮여있을 때는 더더욱.</p></section>
+  </body>
+</html>
