@@ -64,7 +64,7 @@ class Projects extends HTMLElement {
         </p>
 
         <h3>
-          그거 어딨더라? 우리집 물건 위치 데이터베이스 -
+          그거 어딨더라? 우리집 물건 찾기 -
           <a target="_blank" href="https://home-item-finder.netlify.app">
             Link
           </a>
