@@ -47,6 +47,36 @@ class Projects extends HTMLElement {
           <li>Gemini 3 Pro 모델을 이용한 바이브 코딩</li>
           <li>Vercel을 통해 서비스
         </ul>
+
+        <h3>
+          Mini games -
+          <a target="_blank" href="https://219-mini-games.netlify.app/">
+            Link
+          </a>
+          <small>
+          <a target="_blank" href="https://github.com/gincheong/mini-games">
+            (github)
+          </a>
+          </small>
+        </h3>
+        <p>
+          가볍게 즐기는 미니게임 모음집
+        </p>
+
+        <h3>
+          그거 어딨더라? 우리집 물건 위치 데이터베이스 -
+          <a target="_blank" href="https://home-item-finder.netlify.app">
+            Link
+          </a>
+          <small>
+          <a target="_blank" href="https://github.com/gincheong/home-item-finder">
+            (github)
+          </a>
+          </small>
+        </h3>
+        <p>
+          집에 있는 서랍, 옷장, 선반에 있는 물건들을 디지털로 저장한다. 찾고 싶은 물건을 이름으로 검색해서 쉽게 위치를 파악 가능!
+        </p>
       </section>
     `;
   }
