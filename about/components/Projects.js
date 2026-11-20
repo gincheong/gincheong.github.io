@@ -12,6 +12,22 @@ class Projects extends HTMLElement {
       </style>
       <section>
         <h2>프로젝트</h2>
+
+        <h3>
+          Unmouse
+          <a target="_blank" href="https://gincheong.github.io/Unmouse/">
+            Link
+          </a>
+          <small>
+          <a target="_blank" href="https://github.com/gincheong/Unmouse">
+            (github)
+          </a>
+          </small>
+        </h3>
+        <p>
+          마우스 키 입력을 키보드 단축키로 동작시키는 앱
+        </p>
+        
         <h3>
           telegram-notification-bot
           <small>
@@ -45,23 +61,8 @@ class Projects extends HTMLElement {
         </p>
         <ul>
           <li>Gemini 3 Pro 모델을 이용한 바이브 코딩</li>
-          <li>Vercel을 통해 서비스
+          <li>Vercel을 통해 서비스</li>
         </ul>
-
-        <h3>
-          Mini games -
-          <a target="_blank" href="https://219-mini-games.netlify.app/">
-            Link
-          </a>
-          <small>
-          <a target="_blank" href="https://github.com/gincheong/mini-games">
-            (github)
-          </a>
-          </small>
-        </h3>
-        <p>
-          가볍게 즐기는 미니게임 모음집
-        </p>
 
         <h3>
           그거 어딨더라? 우리집 물건 찾기 -
